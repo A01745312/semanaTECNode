@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 // Cargar las rutas
-//app.use(modeloIARoutes);
+app.use(modeloIARoutes);
 app.use('/usuario', ejemploBDRoutes);
 
 // Ruta madre
