@@ -4,9 +4,9 @@ const ejemploBDController = require('../controllers/ejemploBD')
 
 
 // Mostrar registro (SELECT * FROM Usuario)
-router.get('/mostrarUsuarios',);
+router.get('/mostrarUsuarios', ejemploBDController.getUsuarios);
 
 // Agregar registro (INSERT INTO Usuario)
-router.post('/agregarUsuario',);
+router.post('/agregarUsuario', ejemploBDController.postAgregarUsuario);
 
 module.exports = router;

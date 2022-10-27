@@ -15,7 +15,7 @@ exports.postUpload = async (req,res) => {
     if (!image) return res.send("Error al enviar imagen")
     await image.mv(path.join(__dirname, '..', 'public', 'img', image.name));
     model.classify({
-        imageUrl: "http://localhost:8081/img/" + image.name
+        imageU: "http://localhost:8081/img/" + image.name
     }).then((prediccion) => {
         res.send(prediccion)
     }).catch((e) => res.send(e))

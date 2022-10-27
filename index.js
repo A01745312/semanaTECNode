@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const fileUpload = require('express-fileupload')
 const modeloIARoutes = require('./routes/modeloIA')
+const ejemploBDRoutes = require('./routes/ejemploBD')
+const sequelize = require('./utils/database')
 
 // Crea servidor
 const app = express();
@@ -14,14 +16,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 // Cargar las rutas
-app.use(modeloIARoutes);
+//app.use(modeloIARoutes);
+app.use('/usuario', ejemploBDRoutes);
 
 // Ruta madre
 app.get('/', (req,res) => {
     res.send('Servidor funcionando')
 })
 
-// Verificar que funcione el servidor
-app.listen(8081, () => {
-    console.log("Servidor en linea")
-})
+sequelize.sync()
+    .then(resultado => {
+        console.log('Conexion BD exitosa')
+        // Verificar que funcione el servidor
+        app.listen(8081, () => {
+            console.log("Servidor en linea")
+        })
+    })
+    .catch (error => console.log(error))
+
+
+
